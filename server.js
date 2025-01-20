@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import swaggerUI from 'swagger-ui-express';
 import specs from './swagger/swagger.js';
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 10000;
 const app = express();
 app.use(express.json());
 
@@ -18,7 +18,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs))
 mongoose.connect(process.env.MONGO_URL, { dbName: 'demo_db'})
     .then(() => {
         console.log('Connected to MongoDB')
-        app.listen(port, 'localhost', () => console.log(`Server is running on http://localhost:${port}`));
+        app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));
     })
     .catch(err => console.log(err));
 
